@@ -1,6 +1,8 @@
 
 
 import 'package:annill/features/authentication/presentation/screens/onboarding_screen.dart';
+import 'package:annill/features/home/presentaion/screens/home_helper_screen/all_products_screen.dart';
+import 'package:annill/features/home/presentaion/screens/home_helper_screen/product_details_screen.dart';
 import 'package:annill/features/role_selection/screen/role_selection_screen.dart';
 import 'package:get/get.dart';
 import '../features/authentication/presentation/screens/email_verify_screen.dart';
@@ -28,6 +30,8 @@ class AppRoute {
   static String signUpScreen = "/signUpScreen";
 
   static String homeScreen = "/homeScreen";
+  static String allProductScreen = "/allProductsScreen";
+  static String productDetailsScreen = "/productDetailsScreen";
 
 
   static String emailVerifyScreen = "/emailVerifyScreen";
@@ -50,6 +54,8 @@ class AppRoute {
     GetPage(name: signUpScreen, page:() =>  SignUpScreen()),
 
     GetPage(name: homeScreen, page:() => const HomeScreen()),
+    GetPage(name: allProductScreen, page:() => AllProductsScreen(selectedCategory: Get.arguments ?? '',)),
+    GetPage(name: productDetailsScreen, page:() => ProductDetailsScreen()),
 
 
     // Added by Shahriar

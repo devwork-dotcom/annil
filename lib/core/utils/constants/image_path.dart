@@ -11,4 +11,9 @@ class ImagePath{
    static const  String profilePng ='$_basePath/profile.png';
    static const  String featured_banner ='$_basePath/featured_banner.png';
 
+   static const  String banner_fruit ='$_basePath/tomato.png';
+   static const  String banner_cart ='$_basePath/mdi_cart.png';
+   static const  String banner_vegetables ='$_basePath/vegetables.png';
+   static const  String vegetable_tomato ='$_basePath/vegetable_tomato.png';
+
 }

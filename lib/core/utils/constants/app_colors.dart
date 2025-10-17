@@ -30,6 +30,7 @@ class AppColors {
   static const Color review = Color(0xFFFFC107);
   static const Color borderColors = Color(0xFFBEBEBE);
   static const Color verticalCardColors = Color(0xFFEBFFF7);
+  static const Color ratingStarColor = Color(0xFFFF8610);
 
   static const Color textBold = Color(0xff091824);
   static const Color textGrey = Color(0xff9597A6);

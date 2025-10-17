@@ -1,4 +1,5 @@
 
+import 'package:annill/features/home/controllers/product_controller.dart';
 import 'package:get/get.dart';
 
 import '../../features/home/controllers/home_controller.dart';
@@ -17,10 +18,13 @@ class ControllerBinder extends Bindings {
           () => HomeController(),
       fenix: true,
     );
+
     Get.lazyPut<ProfileController>(
           () => ProfileController(),
       fenix: true,
     );
+
+    Get.lazyPut(() => ProductController(),fenix: true);
 
 
   }

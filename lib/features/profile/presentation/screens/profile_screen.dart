@@ -151,7 +151,7 @@ class ProfileScreen extends StatelessWidget {
                   onTap: () {
                     Get.toNamed(AppRoute.personalInformationScreen);
                   },
-                  text: 'Accounts', icon: IconPath.images, // Placeholder icon
+                  text: 'Accounts', icon: IconPath.profile, // Placeholder icon
                 ),
                 Gap(8.h),
                 ProfileItemCard(

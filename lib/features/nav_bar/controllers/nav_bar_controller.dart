@@ -1,6 +1,8 @@
 
 
 
+import 'package:annill/features/cart/presentation/screen/cart_screen.dart';
+import 'package:annill/features/orders/presentation/screen/orders_screen.dart';
 import 'package:get/get.dart';
 import '../../../core/services/Auth_service.dart';
 import '../../home/presentaion/screens/home_screen.dart';
@@ -13,8 +15,8 @@ class NavBarController extends GetxController {
 
   List screens = [
     HomeScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    CartScreen(),
+    OrdersScreen(),
     ProfileScreen(),
   ];
 

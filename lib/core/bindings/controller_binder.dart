@@ -1,5 +1,8 @@
 
+import 'package:annill/features/cart/controller/cart_controller.dart';
+import 'package:annill/features/cart/controller/checkout_controller.dart';
 import 'package:annill/features/home/controllers/product_controller.dart';
+import 'package:annill/features/orders/controllers/order_controller.dart';
 import 'package:get/get.dart';
 
 import '../../features/home/controllers/home_controller.dart';
@@ -25,6 +28,9 @@ class ControllerBinder extends Bindings {
     );
 
     Get.lazyPut(() => ProductController(),fenix: true);
+    Get.lazyPut(() => CartController(),fenix: true);
+    Get.lazyPut(() => CheckoutController(),fenix: true);
+    Get.lazyPut(() => OrderController(),fenix: true);
 
 
   }

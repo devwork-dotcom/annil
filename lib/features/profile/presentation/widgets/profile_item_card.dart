@@ -1,4 +1,5 @@
 import 'package:annill/core/utils/constants/app_sizer.dart';
+import 'package:annill/core/utils/constants/image_path.dart';
 import 'package:flutter/material.dart';
 
 
@@ -32,7 +33,7 @@ this.icon,
         ),
         child: Row(
           children: [
-            Image.asset(icon!, height: 20.h, width: 20.w),
+            Image.asset(ImagePath.profilePng, height: 20.h, width: 20.w),
             SizedBox(width: 8),
             CustomText(
               text: text,

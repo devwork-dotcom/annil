@@ -4,11 +4,12 @@ import 'package:annill/core/utils/constants/app_colors.dart';
 import 'package:annill/core/utils/constants/app_sizer.dart';
 import 'package:annill/core/utils/constants/image_path.dart';
 import 'package:annill/features/orders/controllers/order_controller.dart';
+import 'package:annill/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class PendingOrdersScreen extends GetView<OrderController> {
-  const PendingOrdersScreen({super.key});
+class TabbarOrdersScreen extends GetView<OrderController> {
+  const TabbarOrdersScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -114,7 +115,9 @@ class PendingOrdersScreen extends GetView<OrderController> {
                                 padding:  EdgeInsets.only(top: 10.h),
                                 child: CustomButton(
                                   text:"Track" ,
-                                  onTap: (){},
+                                  onTap: (){
+                                    controller.navigateToOrderTrackingScreen();
+                                  },
                                   isUpperCase: false,
                                   padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 8.h),
                                   customTextStyle: TextStyle(
@@ -140,7 +143,9 @@ class PendingOrdersScreen extends GetView<OrderController> {
                                       flex: 1,
                                       child: CustomButton(
                                         text:"Invoice" ,
-                                        onTap: (){},
+                                        onTap: (){
+                                          Get.toNamed(AppRoute.invoiceScreen);
+                                        },
                                         isUpperCase: false,
                                         padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 8.h),
                                         customTextStyle: TextStyle(
@@ -157,7 +162,9 @@ class PendingOrdersScreen extends GetView<OrderController> {
                                       flex: 1,
                                       child: CustomButton(
                                         text:"Post Review" ,
-                                        onTap: (){},
+                                        onTap: (){
+                                          controller.navigateCustomerScreen();
+                                        },
                                         isUpperCase: false,
                                         isOutline: true,
                                         padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 8.h),

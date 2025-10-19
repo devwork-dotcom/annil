@@ -1,7 +1,13 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:io';
+import 'package:annill/core/common/widgets/custom_button.dart';
+import 'package:annill/core/common/widgets/custom_text.dart';
+import 'package:annill/core/utils/constants/app_colors.dart';
+import 'package:annill/core/utils/constants/app_sizer.dart';
+import 'package:annill/routes/app_routes.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import 'package:get/get.dart';
@@ -22,24 +28,30 @@ import '../../../core/utils/logging/logger.dart';
 import '../model/profile_model.dart';
 
 class ProfileController extends GetxController {
+
+//User Information
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController addressController = TextEditingController();
-
+  final TextEditingController locationController = TextEditingController();
+  var selectedAvailability = "".obs;
+  List<String> availabilityItems = [
+    "Available",
+    "Busy",
+  ];
   final inProgress = false.obs;
   RxString imagePath = ''.obs;
-  // Observable for selected image
-  final Rx<File?> profileImage = Rx<File?>(null);
-
-  // Observable for notification state
-  final RxBool isNotificationEnabled = true.obs;
-
-  // Image picker instance
   final ImagePicker _picker = ImagePicker();
+  final Rx<File?> profileImage = Rx<File?>(null);
 
   @override
   void onInit() {
     super.onInit();
+    if (selectedAvailability.value.isEmpty) {
+      selectedAvailability.value = availabilityItems.first;
+    }
+
     getProfileData().then((_) {
       if (profileDataModel.value.data != null) {
         nameController.text = profileDataModel.value.data?.name ?? '';
@@ -51,19 +63,109 @@ class ProfileController extends GetxController {
     _loadNotificationState();
   }
 
-  /// Method to pick an image from gallery or camera
+  void updateAvailability(String value) {
+    selectedAvailability.value = value;
+    // Add any additional logic here (API call, etc.)
+  }
+
+  void showImagePickerDialog() {
+    Get.dialog(
+      Dialog(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              CustomText(
+                text: "Choose Option",
+                color: AppColors.textBlack,
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w600,
+              ),
+              SizedBox(height: 20),
+
+
+              ListTile(
+                leading: Icon(Icons.camera_alt, color: AppColors.primary),
+                title: CustomText(
+                  text: "Camera",
+                  color: AppColors.textBlack,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                ),
+                onTap: () {
+                  Get.back();
+                  pickImage(ImageSource.camera);
+                },
+              ),
+
+
+              ListTile(
+                leading: Icon(Icons.photo_library, color: AppColors.primary),
+                title: CustomText(
+                  text: "Gallery",
+                  color: AppColors.textBlack,
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                ),
+                onTap: () {
+                  Get.back();
+                  pickImage(ImageSource.gallery);
+                },
+              ),
+
+              SizedBox(height: 10),
+
+              // Cancel Button
+              SizedBox(
+                width: double.infinity,
+                child: TextButton(
+                  onPressed: () => Get.back(),
+                  child: CustomText(
+                    text: "Cancel",
+                    color: AppColors.textBlack,
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w300,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   Future<void> pickImage(ImageSource source) async {
     try {
       final XFile? pickedFile = await _picker.pickImage(source: source);
       if (pickedFile != null) {
         profileImage.value = File(pickedFile.path);
-        imagePath.value = pickedFile.path; // Store path for update
-        await updateAccount(); // Instantly update profile
+        imagePath.value = pickedFile.path;
+        //await updateAccount();
       }
     } catch (e) {
       Get.snackbar('Error', 'Failed to pick image: $e');
     }
   }
+
+
+//Company Information Information
+  final TextEditingController companyNameController = TextEditingController();
+  final TextEditingController companyLocationController = TextEditingController();
+
+
+
+  final RxBool isNotificationEnabled = true.obs;
+
+
+
+
+
+
 
 
   /// Method to toggle notification state
@@ -331,4 +433,115 @@ class ProfileController extends GetxController {
     addressController.dispose();
     super.onClose();
   }
+
+
+//Logout popup
+  void showLogoutDialog() {
+    Get.bottomSheet(
+      Container(
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(16),
+            topRight: Radius.circular(16),
+          ),
+        ),
+        padding: EdgeInsets.all(20),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // Title
+            CustomText(
+              text: "Logout",
+              color: AppColors.textBlack,
+              fontSize: 18.sp,
+              fontWeight: FontWeight.w500,
+            ),
+            SizedBox(height: 16.h),
+            Divider(height: 1.w,color: AppColors.borderColors.withOpacity(0.3),),
+            SizedBox(height: 16.h),
+
+            // Content
+            CustomText(
+              text: "Are you sure you want to logout?",
+              color: AppColors.textSecondary,
+              fontSize: 16.sp,
+              fontWeight: FontWeight.w400,
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 24.h),
+
+            // Buttons
+            Row(
+              children: [
+                // Cancel Button
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding:  EdgeInsets.all(8.0),
+                    child: CustomButton(
+                      text: 'Cancel',
+                      isUpperCase: false,
+                      isOutline: true,
+                      textColor: AppColors.textPrimary,
+                      borderColor: AppColors.primary,
+                      backgroundColor: AppColors.white,
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
+                      borderRadius: BorderRadius.circular(50.w),
+                      onTap: () {
+                        Get.back();
+                        //_performLogout();
+                      },
+                    ),
+                  ),
+                ),
+
+                // Logout Button
+                Expanded(
+                  flex: 1,
+                  child: Padding(
+                    padding:  EdgeInsets.all(8.0),
+                    child: CustomButton(
+                      text: 'Logout',
+                      isUpperCase: false,
+
+                      padding: EdgeInsets.symmetric(vertical: 10.h),
+                      borderRadius: BorderRadius.circular(50.w),
+                      onTap: () {
+                        Get.back();
+                        //_performLogout();
+                      },
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(height: 24.h),
+          ],
+        ),
+      ),
+      isScrollControlled: true,
+    );
+  }
+
+
+
+
+  void navigateToUpdateUserInfo() {
+    Get.toNamed(AppRoute.userInfoScreen);
+  }
+
+  void navigateToCompanyInfo() {
+    Get.toNamed(AppRoute.companyInfoScreen);
+  }
+
+  void navigateToChangePasswordScreen() {
+    Get.toNamed(AppRoute.changePasswordScreen);
+  }
+
+  void navigateToLegalAndPoliciesScreen() {
+    Get.toNamed(AppRoute.legalAndPoliciesScreen);
+  }
+
+
 }

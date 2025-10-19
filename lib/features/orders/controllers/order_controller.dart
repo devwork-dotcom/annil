@@ -1,5 +1,6 @@
 import 'package:annill/core/utils/constants/app_colors.dart';
 import 'package:annill/features/orders/model/order_data_model.dart';
+import 'package:annill/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -120,4 +121,19 @@ class OrderController extends GetxController with GetSingleTickerProviderStateMi
         return AppColors.error;
     }
   }
+
+  void navigateToOrderTrackingScreen (){
+    Get.toNamed(AppRoute.orderTrackingScreen);
+
+  }
+
+  void navigateInvoiceScreen (){
+    Get.toNamed(AppRoute.invoiceScreen);
+
+  }
+  void navigateCustomerScreen (){
+    Get.toNamed(AppRoute.customerReviewScreen);
+
+  }
+
 }

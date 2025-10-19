@@ -100,7 +100,7 @@ class CustomButton extends StatelessWidget {
                     style: customTextStyle ??
                         GoogleFonts.montserrat(
                           fontSize: 16.sp,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: FontWeight.w700,
                           color: effectiveTextColor,
                         ),
                   ),

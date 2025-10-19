@@ -1,22 +1,22 @@
+import 'package:annill/core/utils/constants/app_colors.dart';
 import 'package:annill/core/utils/constants/app_sizer.dart';
-import 'package:annill/core/utils/constants/image_path.dart';
 import 'package:flutter/material.dart';
-
-
 import '../../../../core/common/widgets/custom_text.dart';
-
-
 
 class ProfileItemCard extends StatelessWidget {
   final void Function()? onTap;
-  final String? icon;
   final String text;
+  final IconData? prefixIcon;
+  final Color? textColor;
+  final Color? iconColor;
 
   const ProfileItemCard({
     super.key,
     this.onTap,
-this.icon,
     required this.text,
+    this.prefixIcon,
+    this.textColor,
+    this.iconColor,
   });
 
   @override
@@ -26,23 +26,37 @@ this.icon,
       child: Container(
         height: 44.h,
         width: double.infinity,
-        padding: EdgeInsets.all(12.h),
+        padding: EdgeInsets.symmetric(horizontal: 2.w,vertical: 5.h),
         decoration: BoxDecoration(
-          color: Colors.white,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Row(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset(ImagePath.profilePng, height: 20.h, width: 20.w),
-            SizedBox(width: 8),
+            if (prefixIcon != null)
+              Icon(
+                prefixIcon,
+                size: 24.w,
+                color: iconColor ?? AppColors.textSecondary.withOpacity(0.5),
+              ),
+
+            if (prefixIcon != null) SizedBox(width: 8.w),
+
+            // Text
             CustomText(
               text: text,
-              color: Color(0xFF6C757D),
-              fontSize: 14.sp,
+              color: textColor ?? AppColors.textPrimary,
+              fontSize: 16.sp,
             ),
+
             Spacer(),
-            //Image.asset(IconPath.arrowForward, height: 12.h, width: 6.w),
-            Icon(Icons.arrow_forward_ios_outlined)
+
+            // Arrow icon
+            Icon(
+              Icons.arrow_forward_ios_outlined,
+              size: 20.w,
+              color: AppColors.textSecondary.withOpacity(0.5),
+            ),
           ],
         ),
       ),

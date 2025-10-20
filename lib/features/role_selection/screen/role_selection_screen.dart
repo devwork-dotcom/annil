@@ -42,7 +42,8 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                         text: "Become a Farmer",
                         isUpperCase: false,
                         onTap: (){
-                          Get.offNamed(AppRoute.signUpScreen);
+                          controller.setFarmerRole();
+
                         }),
                     SizedBox(height: 20.h),
                     CustomButton(
@@ -53,7 +54,7 @@ class RoleSelectionScreen extends GetView<RoleSelectionController> {
                         textColor: AppColors.textPrimary,
                         isOutline: true,
                         onTap: (){
-                          Get.offNamed(AppRoute.signUpScreen);
+                          controller.setCustomerRole();
                         }),
 
 

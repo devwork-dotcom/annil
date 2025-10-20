@@ -62,7 +62,9 @@ class OnboardingInitScreen extends StatelessWidget {
                     textColor: AppColors.textPrimary,
                     isUpperCase: false,
                     isOutline: true,
-                    onTap: (){}),
+                    onTap: (){
+                      Get.offNamed(AppRoute.roleSelectionScreen);
+                    }),
               ],
             ),
           ),

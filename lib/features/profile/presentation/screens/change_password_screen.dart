@@ -24,7 +24,15 @@ class ChangePasswordScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
-        title: CustomText(text: 'Change Password', color: AppColors.textPrimary, fontSize: 18,fontWeight: FontWeight.w500,),
+        title: CustomText(
+          text: "Change Password",
+          color: AppColors.textBlack,
+          fontSize: 18.sp,
+          fontWeight: FontWeight.w600,
+        ),
+        backgroundColor: AppColors.white,
+        elevation: 0,
+        centerTitle: true,
       ),
       body: SafeArea(
         child: Padding(
@@ -44,13 +52,11 @@ class ChangePasswordScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       // Current Password
-                      CustomText(
-                        text: 'Current Password',
-                        fontSize: 16.sp,
-                      ),
+
                       Obx(() => CustomTextField(
                         controller: changePasswordController.currentPasswordController,
-                        hintText: 'Enter Current Password',
+                        hintText: 'Current Password',
+                        radius: 10.w,
                         obscureText:
                         !changePasswordController
                             .isCurrentPasswordVisible
@@ -72,14 +78,12 @@ class ChangePasswordScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 5.h),
                       // New Password
-                      CustomText(
-                        text: 'New Password',
-                        fontSize: 16.sp,
-                      ),
+
                       Obx(() => CustomTextField(
                         controller:
                         changePasswordController.newPasswordController,
-                        hintText: 'Enter New Password',
+                        hintText: 'New Password',
+                        radius: 10.w,
                         obscureText:
                         !changePasswordController.isNewPasswordVisible.value,
                         suffixIcon: IconButton(
@@ -98,14 +102,11 @@ class ChangePasswordScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 5.sp),
                       // Confirm Password
-                      CustomText(
-                        text: 'Confirm Password',
-                        fontSize: 16.sp,
-                      ),
                       Obx(() => CustomTextField(
                         controller:
                         changePasswordController.confirmPasswordController,
-                        hintText: 'Enter Confirm Password',
+                        hintText: 'Confirm Password',
+                        radius: 10.w,
                         obscureText:
                         !changePasswordController
                             .isConfirmPasswordVisible
@@ -142,6 +143,7 @@ class ChangePasswordScreen extends StatelessWidget {
                 Spacer(),
                 CustomButton(
                   text: 'Change Password',
+                  isUpperCase: false,
                   onTap: () {
 
                     if (_formKey.currentState!.validate()) {

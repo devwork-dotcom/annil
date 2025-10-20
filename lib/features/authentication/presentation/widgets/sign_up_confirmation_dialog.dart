@@ -29,7 +29,7 @@ void showSignupConfirmationDialog() {
         CustomButton(
           text: "Login",
           onTap: () {
-            Get.offAllNamed(AppRoute.loginScreen);
+            Get.offAllNamed(AppRoute.navBar);
           },
         ),
       ],

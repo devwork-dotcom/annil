@@ -81,12 +81,11 @@ class OtpController extends GetxController {
   Future<void> verifyOtp() async {
 
     if (fromScreen == AppRoute.signUpScreen || fromScreen == AppRoute.loginScreen) {
+      otpTEController.clear();
       showSignupConfirmationDialog();
     } else {
-      Get.offNamed(
-        AppRoute.resetPasswordScreen,
-
-      );
+      otpTEController.clear();
+      Get.offNamed(AppRoute.resetPasswordScreen,);
     }
     //final otpText = otpTEController.text.trim();
     //

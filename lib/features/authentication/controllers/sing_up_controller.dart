@@ -13,6 +13,7 @@ import '../../../core/utils/constants/app_urls.dart';
 import '../../../core/utils/logging/logger.dart';
 import '../../../routes/app_routes.dart';
 import '../presentation/screens/verify_code_screen.dart';
+import 'otp_verify_controller.dart';
 
 class SignUpController extends GetxController {
   final TextEditingController nameTEController = TextEditingController();
@@ -68,6 +69,7 @@ class SignUpController extends GetxController {
 
   /// Step 1: Validate form and navigate to referral screen
   Future<void> signUp() async {
+    Get.delete<OtpController>();
     Get.to(() => VerifyCodeScreen(),
       arguments: {
         'formScreen': AppRoute.signUpScreen,

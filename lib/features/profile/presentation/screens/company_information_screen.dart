@@ -29,8 +29,7 @@ class CompanyInformationScreen extends GetView<ProfileController> {
           elevation: 0,
           centerTitle: true,
         ),
-        body: Obx((){
-          return Padding(
+        body:Padding(
             padding: EdgeInsets.symmetric(horizontal: 16.0.w, vertical: 20.h),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -69,8 +68,8 @@ class CompanyInformationScreen extends GetView<ProfileController> {
 
               ],
             ),
-          );
-        })
+          ),
+
     );
   }
 }

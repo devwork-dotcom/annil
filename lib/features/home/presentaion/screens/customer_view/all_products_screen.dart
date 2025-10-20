@@ -1,4 +1,4 @@
-import 'package:annill/features/home/controllers/product_controller.dart';
+import 'package:annill/features/home/controllers/customer/product_controller_customer.dart';
 import 'package:flutter/material.dart';
 import 'package:annill/core/common/widgets/custom_text.dart';
 import 'package:annill/core/utils/constants/app_colors.dart';
@@ -6,7 +6,7 @@ import 'package:annill/core/utils/constants/app_sizer.dart';
 import 'package:annill/core/utils/constants/image_path.dart';
 import 'package:get/get.dart';
 
-class AllProductsScreen extends GetView<ProductController> {
+class AllProductsScreen extends GetView<ProductsControllerCustomer> {
   final String selectedCategory;
 
 

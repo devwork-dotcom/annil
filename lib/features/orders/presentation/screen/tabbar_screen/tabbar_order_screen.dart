@@ -1,5 +1,6 @@
 import 'package:annill/core/common/widgets/custom_button.dart';
 import 'package:annill/core/common/widgets/custom_text.dart';
+import 'package:annill/core/services/Auth_service.dart';
 import 'package:annill/core/utils/constants/app_colors.dart';
 import 'package:annill/core/utils/constants/app_sizer.dart';
 import 'package:annill/core/utils/constants/image_path.dart';
@@ -13,6 +14,8 @@ class TabbarOrdersScreen extends GetView<OrderController> {
 
   @override
   Widget build(BuildContext context) {
+    final userRole = AuthService.role;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
 
@@ -107,10 +110,10 @@ class TabbarOrdersScreen extends GetView<OrderController> {
 
 
 
-                            //Track Button
+                            //Track, Button customer
 
                             Visibility(
-                              visible: controller.currentTabIndex.value == 0 || controller.currentTabIndex.value == 1,
+                              visible:userRole == "customer" && (controller.currentTabIndex.value == 0 || controller.currentTabIndex.value == 1),
                               child: Padding(
                                 padding:  EdgeInsets.only(top: 10.h),
                                 child: CustomButton(
@@ -131,10 +134,8 @@ class TabbarOrdersScreen extends GetView<OrderController> {
                               ),
                             ),
 
-
-
                             Visibility(
-                              visible:  controller.currentTabIndex.value == 2,
+                              visible: userRole == "customer" && controller.currentTabIndex.value == 2,
                               child: Padding(
                                 padding:EdgeInsets.only(top: 10.h),
                                 child: Row(
@@ -185,6 +186,110 @@ class TabbarOrdersScreen extends GetView<OrderController> {
                               ),
                             ),
 
+
+                            //Track, Button Farmer
+
+                            Visibility(
+                              visible: userRole == "farmer" && controller.currentTabIndex.value == 0,
+                              child: Padding(
+                                padding:EdgeInsets.only(top: 10.h),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: CustomButton(
+                                        text:"Accept" ,
+                                        onTap: (){
+                                          Get.toNamed(AppRoute.orderDetailsScreen);
+                                        },
+                                        isUpperCase: false,
+                                        padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 8.h),
+                                        customTextStyle: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 10.sp,
+                                            color: AppColors.white
+                                        ),
+
+
+                                      ),
+                                    ),
+                                    SizedBox(width: 10.h,),
+                                    Expanded(
+                                      flex: 1,
+                                      child: CustomButton(
+                                        text:"Reject" ,
+                                        onTap: (){
+                                          //controller.navigateCustomerScreen();
+                                        },
+                                        isUpperCase: false,
+                                        padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 8.h),
+                                        customTextStyle: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 10.sp,
+                                          color: AppColors.white,
+
+                                        ),
+                                        backgroundColor: AppColors.error,
+
+
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+
+                            Visibility(
+                              visible: userRole == "farmer" && controller.currentTabIndex.value == 1,
+                              child: Padding(
+                                padding:EdgeInsets.only(top: 10.h),
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      flex: 1,
+                                      child: CustomButton(
+                                        text:"Complete" ,
+                                        onTap: (){
+                                          //Get.toNamed(AppRoute.invoiceScreen);
+                                        },
+                                        isUpperCase: false,
+                                        padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 8.h),
+                                        customTextStyle: TextStyle(
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 10.sp,
+                                            color: AppColors.white
+                                        ),
+
+
+                                      ),
+                                    ),
+                                    SizedBox(width: 10.h,),
+                                    Expanded(
+                                      flex: 1,
+                                      child: CustomButton(
+                                        text:"Cancel" ,
+                                        onTap: (){
+                                          //controller.navigateCustomerScreen();
+                                        },
+                                        isUpperCase: false,
+                                        padding: EdgeInsets.symmetric(horizontal: 20.w,vertical: 8.h),
+                                        customTextStyle: TextStyle(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 10.sp,
+                                          color: AppColors.white,
+
+                                        ),
+                                        backgroundColor: AppColors.error,
+
+
+
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
 
 
 

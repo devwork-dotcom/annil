@@ -26,6 +26,9 @@ class ProfileScreen extends GetView<ProfileController> {
 
   @override
   Widget build(BuildContext context) {
+
+    final userRole = AuthService.role;
+
     return Scaffold(
       backgroundColor: AppColors.backgroundLight,
       appBar: AppBar(
@@ -109,6 +112,20 @@ class ProfileScreen extends GetView<ProfileController> {
 
                   controller.navigateToCompanyInfo();
                 },
+              ),
+
+              //Earning Details
+              Visibility(
+                visible: userRole == "farmer",
+                child: ProfileItemCard(
+                  text: "My Earning",
+                  prefixIcon: Icons.currency_exchange_outlined,
+                  onTap: (){
+
+                    Get.toNamed(AppRoute.myEarningController);
+                    //controller.navigateToCompanyInfo();
+                  },
+                ),
               ),
 
               Gap(5.h),

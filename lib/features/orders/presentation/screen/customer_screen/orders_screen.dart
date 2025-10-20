@@ -5,7 +5,7 @@ import 'package:annill/features/orders/controllers/order_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'tabbar_screen/tabbar_order_screen.dart';
+import '../tabbar_screen/tabbar_order_screen.dart';
 
 class OrdersScreen extends GetView<OrderController> {
   const OrdersScreen({super.key});

@@ -1,11 +1,11 @@
 
-import 'package:annill/features/home/presentaion/screens/home_helper_screen/all_products_screen.dart';
-import 'package:annill/features/home/presentaion/widgets/category_filter.dart';
+import 'package:annill/features/home/presentaion/screens/customer_view/all_products_screen.dart';
+import 'package:annill/features/home/presentaion/widgets/category_filter_widget.dart';
 import 'package:annill/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomeController extends GetxController {
+class HomeControllerCustomer extends GetxController {
   var selectedCategory = ''.obs;
   var showBottomPopup = false.obs;
 

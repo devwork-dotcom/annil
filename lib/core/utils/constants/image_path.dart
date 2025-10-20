@@ -16,4 +16,8 @@ class ImagePath{
    static const  String banner_vegetables ='$_basePath/vegetables.png';
    static const  String vegetable_tomato ='$_basePath/vegetable_tomato.png';
 
+   //Farmer View Icon path
+   static const  String notification ='$_basePath/notification.png';
+   static const  String delivery_box ='$_basePath/delivery_box.png';
+   static const  String dollar ='$_basePath/dollar.png';
 }

@@ -1,7 +1,7 @@
 import 'package:annill/routes/app_routes.dart';
 import 'package:get/get.dart';
 
-class ProductController extends GetxController{
+class ProductsControllerCustomer extends GetxController{
   var productQuantity = 1.obs;
 
   var isDescription = true.obs;

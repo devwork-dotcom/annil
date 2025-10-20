@@ -2,11 +2,11 @@ import 'package:annill/core/common/widgets/custom_button.dart';
 import 'package:annill/core/common/widgets/custom_text.dart';
 import 'package:annill/core/utils/constants/app_colors.dart';
 import 'package:annill/core/utils/constants/app_sizer.dart';
-import 'package:annill/features/home/controllers/home_controller.dart';
+import 'package:annill/features/home/controllers/customer/home_controller_customer.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class CategoryFilter extends GetView<HomeController> {
+class CategoryFilter extends GetView<HomeControllerCustomer> {
   final String selectedCategory;
   final Function(String) onCategorySelected;
   final Function() onClose;
